@@ -95,7 +95,6 @@ dspnode:
   replicaCount: 1
   service:
     type: LoadBalancer
-  enabled: true
   replicaCount: 1
   
   image:

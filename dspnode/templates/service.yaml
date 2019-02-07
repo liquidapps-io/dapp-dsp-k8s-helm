@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "dapp-dsp.biosfullname" . }}
+  name: {{ include "dspnode.biosfullname" . }}
   labels:
-    app: {{ include "dapp-dsp.name" . }}
-    chart: {{ include "dapp-dsp.chart" . }}
+    app: {{ include "dspnode.name" . }}
+    chart: {{ include "dspnode.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "dapp-dsp.nodeosfullname" . }}
+  name: {{ include "dspnode.nodeosfullname" . }}
   labels:
-    app: {{ include "dapp-dsp.name" . }}
-    chart: {{ include "dapp-dsp.chart" . }}
+    app: {{ include "dspnode.name" . }}
+    chart: {{ include "dspnode.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -48,10 +48,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "dapp-dsp.headlessService" . }}
+  name: {{ include "dspnode.headlessService" . }}
   labels:
-    app: {{ include "dapp-dsp.name" . }}
-    chart: {{ include "dapp-dsp.chart" . }}
+    app: {{ include "dspnode.name" . }}
+    chart: {{ include "dspnode.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
