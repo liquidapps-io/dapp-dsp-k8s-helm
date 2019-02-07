@@ -33,6 +33,9 @@ helm install stable/kubernetes-dashboard
 ### Install DAPP-DSP helm chart
 ```
 wget https://.../charts/dapp-dsp-config.yaml
+helm dependency update
 helm install -f dapp-dsp-config.yaml https://.../charts/dapp-dsp.tgz
+
+
 ```
 
