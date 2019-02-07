@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dapp-dsp.biosfullname" . }}
+  labels:
+    app: {{ include "dapp-dsp.name" . }}
+    chart: {{ include "dapp-dsp.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8888
+      targetPort: 8888
+      protocol: TCP
+      name: http
+    - port: 9876
+      targetPort: 9876
+      protocol: TCP
+      name: peer-to-peer
+  selector:
+    app: bios
+    release: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dapp-dsp.nodeosfullname" . }}
+  labels:
+    app: {{ include "dapp-dsp.name" . }}
+    chart: {{ include "dapp-dsp.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  loadBalancerSourceRanges: 
+{{- range $index, $cidr := .Values.service.loadBalancerSourceRanges | split "," }}
+    - {{ $cidr }}
+{{- end }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 8888
+      protocol: TCP
+  selector:
+    app: nodeos
+    release: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dapp-dsp.headlessService" . }}
+  labels:
+    app: {{ include "dapp-dsp.name" . }}
+    chart: {{ include "dapp-dsp.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  clusterIP: None
+  ports:
+    - port: 8888
+      targetPort: 8888
+      protocol: TCP
+      name: http
+    - port: 9876
+      targetPort: 9876
+      protocol: TCP
+      name: peer-to-peer
+  selector:
+    app: nodeos
+    release: {{ .Release.Name }}
