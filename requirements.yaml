@@ -1,19 +1,19 @@
 dependencies:
 - name: ipfs
-  version: 5.x.x
+  version: 0.2.2
   repository: https://kubernetes-charts.storage.googleapis.com/
   condition: ipfs.enabled
   tags:
     - ipfs-cluster
 - name: eosnode
-  version: 1.0.0
+  version: 0.1.0
   repository: file://./eosnode
   condition: eosnode.enabled
   tags:
     - eosio
     - eosnode
 - name: dspnode
-  version: 1.0.0
+  version: 0.1.0
   repository: file://./dspnode
   condition: dspnode.enabled
   tags:
