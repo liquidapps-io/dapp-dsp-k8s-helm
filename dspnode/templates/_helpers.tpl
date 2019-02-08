@@ -13,11 +13,11 @@ Expand the name of the chart.
 {{- end -}}
 
 {{- define "dspnode.headlessname" -}}
-{{- printf "%s-headless" .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-dspheadless" .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{- define "dspnode.dspfullname" -}}
-{{- printf "%s-nodeos" .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-dspnode" .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
