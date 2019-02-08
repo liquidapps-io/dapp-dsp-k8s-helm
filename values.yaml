@@ -8,7 +8,7 @@ eosnode:
   replicaCount: 1
   persistence:
     enabled: true
-    size: 100Gi
+    size: 1000Gi
   # Default values for dapp-dsp.
   # This is a YAML-formatted file.
   # Declare variables to be passed into your templates.
