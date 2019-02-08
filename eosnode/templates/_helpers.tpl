@@ -12,6 +12,10 @@ Expand the name of the chart.
 {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
+{{- define "eosnode.headlessname" -}}
+{{- printf "%s-headless" .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
 {{- define "eosnode.nodeosfullname" -}}
 {{- printf "%s-nodeos" .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
