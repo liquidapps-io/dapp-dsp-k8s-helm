@@ -1,30 +1,6 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "dspnode.biosfullname" . }}
-  labels:
-    app: {{ include "dspnode.name" . }}
-    chart: {{ include "dspnode.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-spec:
-  type: ClusterIP
-  ports:
-    - port: 8888
-      targetPort: 8888
-      protocol: TCP
-      name: http
-    - port: 9876
-      targetPort: 9876
-      protocol: TCP
-      name: peer-to-peer
-  selector:
-    app: bios
-    release: {{ .Release.Name }}
----
-apiVersion: v1
-kind: Service
-metadata:
   name: {{ include "dspnode.nodeosfullname" . }}
   labels:
     app: {{ include "dspnode.name" . }}
@@ -41,30 +17,6 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: 8888
       protocol: TCP
-  selector:
-    app: nodeos
-    release: {{ .Release.Name }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ include "dspnode.headlessService" . }}
-  labels:
-    app: {{ include "dspnode.name" . }}
-    chart: {{ include "dspnode.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-spec:
-  clusterIP: None
-  ports:
-    - port: 8888
-      targetPort: 8888
-      protocol: TCP
-      name: http
-    - port: 9876
-      targetPort: 9876
-      protocol: TCP
-      name: peer-to-peer
   selector:
     app: nodeos
     release: {{ .Release.Name }}

@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "dapp-dsp.nodeosfullname" . }}
+  name: {{ include "dspnode.nodeosfullname" . }}
   labels:
-    app: {{ include "dapp-dsp.name" . }}
-    chart: {{ include "dapp-dsp.chart" . }}
+    app: {{ include "dspnode.name" . }}
+    chart: {{ include "dspnode.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -13,7 +13,7 @@ spec:
     matchLabels:
       app: nodeos
       release: {{ .Release.Name }}
-  serviceName: {{ include "dapp-dsp.headlessService" . }}
+  serviceName: {{ include "dspnode.headlessService" . }}
   template:
     metadata:
       labels:
@@ -27,7 +27,6 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
             - bash
-            - /usr/local/bin/boot-nodeos.sh
           args: {{ toJson .Values.args }}
           ports:
             - containerPort: 8888
@@ -51,14 +50,14 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: {{ include "dapp-dsp.fullname" . }}
+            name: {{ include "dspnode.fullname" . }}
 {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
         name: data
         labels:
-          app: {{ include "dapp-dsp.name" . }}
-          chart: {{ include "dapp-dsp.chart" . }}
+          app: {{ include "dspnode.name" . }}
+          chart: {{ include "dspnode.chart" . }}
           release: {{ .Release.Name }}
           heritage: {{ .Release.Service }}
       spec:

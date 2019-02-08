@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "dapp-dsp.nodeosfullname" . }}
+  name: {{ include "eosnode.nodeosfullname" . }}
   labels:
-    app: {{ include "dapp-dsp.name" . }}
-    chart: {{ include "dapp-dsp.chart" . }}
+    app: {{ include "eosnode.name" . }}
+    chart: {{ include "eosnode.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -13,7 +13,7 @@ spec:
     matchLabels:
       app: nodeos
       release: {{ .Release.Name }}
-  serviceName: {{ include "dapp-dsp.headlessService" . }}
+  serviceName: {{ include "eosnode.headlessService" . }}
   template:
     metadata:
       labels:
@@ -51,14 +51,14 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: {{ include "dapp-dsp.fullname" . }}
+            name: {{ include "eosnode.fullname" . }}
 {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
         name: data
         labels:
-          app: {{ include "dapp-dsp.name" . }}
-          chart: {{ include "dapp-dsp.chart" . }}
+          app: {{ include "eosnode.name" . }}
+          chart: {{ include "eosnode.chart" . }}
           release: {{ .Release.Name }}
           heritage: {{ .Release.Service }}
       spec:
