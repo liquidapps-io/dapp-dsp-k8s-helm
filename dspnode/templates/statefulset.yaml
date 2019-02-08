@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "dspnode.nodeosfullname" . }}
+  name: {{ include "dspnode.dspfullname" . }}
   labels:
     app: {{ include "dspnode.name" . }}
     chart: {{ include "dspnode.chart" . }}
@@ -13,7 +13,7 @@ spec:
     matchLabels:
       app: nodeos
       release: {{ .Release.Name }}
-  serviceName: {{ include "dspnode.nodeosfullname" . }}
+  serviceName: {{ include "dspnode.dspfullname" . }}
   template:
     metadata:
       labels:
