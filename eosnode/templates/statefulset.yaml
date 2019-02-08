@@ -21,6 +21,14 @@ spec:
         release: {{ .Release.Name }}
     spec:
       terminationGracePeriodSeconds: 10
+{{- if .Values.persistence.enabled }}
+      initContainers:
+        - name: init-data
+          image: liquidapps/eosio-mainnet-loader
+          volumeMounts:
+            - name: data
+              mountPath: /eos.data
+{{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -42,7 +50,9 @@ spec:
             - --http-server-address=0.0.0.0:8888 
             - --http-validate-host=false
             - --snapshot 
+{{- if .Values.persistence.enabled }}
             - /eos.data/snapshots/snapshot-*.bin 
+{{- end }}
           args: {{ toJson .Values.args }}
           ports:
             - containerPort: 8888
