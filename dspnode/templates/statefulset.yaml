@@ -26,7 +26,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
-            - bash
+            - sleep 200
           args: {{ toJson .Values.args }}
           ports:
             - containerPort: 8888
