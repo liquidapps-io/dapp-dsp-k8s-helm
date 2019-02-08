@@ -13,7 +13,7 @@ spec:
     matchLabels:
       app: nodeos
       release: {{ .Release.Name }}
-  serviceName: {{ include "eosnode.headlessService" . }}
+  serviceName: {{ include "eosnode.nodeosfullname" . }}
   template:
     metadata:
       labels:
