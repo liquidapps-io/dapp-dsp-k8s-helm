@@ -52,25 +52,6 @@ eosnode:
       max_inline_action_size: 4096
       max_inline_action_depth: 4
       max_authority_depth: 6
-      
-  persistence:
-    enabled: true
-    ## A manually managed Persistent Volume and Claim
-    ## Requires Persistence.Enabled: true
-    ## If defined, PVC must be created manually before volume will be bound
-    # ExistingClaim:
-  
-    ## Data Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    ##
-    # storageClass: "-"
-  
-    size: 100Gi
-    
   resources: {}  # Optionally specify how much CPU and memory (RAM) each nodeos container needs.
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
