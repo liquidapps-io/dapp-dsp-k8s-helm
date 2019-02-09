@@ -8,7 +8,7 @@ replicaCount: 1
 image:
   repository: yan047/eos
   tag: v1.6.0
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 service:
   port: 8888
