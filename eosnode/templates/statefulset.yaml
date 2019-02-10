@@ -54,20 +54,6 @@ spec:
               subPath: genesis.json
             - name: data
               mountPath: /eos.data
-        - name: tester
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command:
-            - ls
-            - /eos.data/snapshots/
-          resources:
-{{ toYaml .Values.resources | indent 12 }}
-          volumeMounts:
-            - name: config-volume
-              mountPath: /usr/local/etc/eosio/genesis.json
-              subPath: genesis.json
-            - name: data
-              mountPath: /eos.data
       volumes:
         - name: config-volume
           configMap:
