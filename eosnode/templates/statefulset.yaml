@@ -73,7 +73,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
             - ls
-            - /eos.data/
+            - /eos.data/snapshots/
           resources:
 {{ toYaml .Values.resources | indent 12 }}
           volumeMounts:
