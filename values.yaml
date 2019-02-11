@@ -15,8 +15,8 @@ eosnode:
   enabled: true
   replicaCount: 1
   image:
-    repository: yan047/eos
-    tag: v1.6.0
+    repository: liquidapps/eosio-plugins
+    tag: v1.6.1
     pullPolicy: Always
   
   service:
@@ -79,8 +79,8 @@ dspnode:
   replicaCount: 1
   
   image:
-    repository: yan047/eos
-    tag: v1.6.0
+    repository: liquidapps/eosio-plugins
+    tag: v1.6.1
     pullPolicy: Always
 
   service:

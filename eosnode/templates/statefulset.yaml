@@ -25,6 +25,9 @@ spec:
         - name: init-data
           image: liquidapps/eosio-mainnet-loader
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: CLEAR_DB
+            value: "true"
           volumeMounts:
             - name: data
               mountPath: /eos.data
