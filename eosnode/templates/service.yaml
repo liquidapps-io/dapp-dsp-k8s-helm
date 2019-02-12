@@ -9,9 +9,11 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   type: {{ .Values.service.type }}
+{{- if .Values.service.loadBalancerSourceRanges }}  
   loadBalancerSourceRanges: 
 {{- range $index, $cidr := .Values.service.loadBalancerSourceRanges | split "," }}
     - {{ $cidr }}
+{{- end }}
 {{- end }}
   ports:
     - port: {{ .Values.service.port }}
