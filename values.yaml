@@ -42,8 +42,8 @@ dspnode:
   replicaCount: 1
 
   image:
-    repository: liquidapps/eosio-plugins
-    tag: v1.6.1
+    repository: ubuntu
+    tag: latest
     pullPolicy: Always
 
   service:
