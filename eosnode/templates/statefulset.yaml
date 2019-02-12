@@ -38,7 +38,7 @@ spec:
           command:
             - bash
             - -ec
-            - nodeos {{- if .Values.snapshot }} --snapshot=/eos.data/snapshots/snapshot-*.bin {{- end }} {{ include "eosnode.nodeargs" . }} {{ include "eosnode.morenodeargs" . }}
+            - nodeos  --snapshot=/eos.data/snapshots/snapshot-*.bin {{ include "eosnode.nodeargs" . }} {{ include "eosnode.morenodeargs" . }}
           args: {{ toJson .Values.args }}
           ports:
             - containerPort: 8888
