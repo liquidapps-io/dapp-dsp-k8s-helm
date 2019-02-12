@@ -14,6 +14,11 @@ eosnode:
   # Declare variables to be passed into your templates.
   enabled: true
   replicaCount: 1
+
+  service:
+    port: 8888
+    type: ClusterIP
+
     
   resources: {}  # Optionally specify how much CPU and memory (RAM) each nodeos container needs.
     # We usually recommend not to specify default resources and to leave this as a conscious
