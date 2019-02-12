@@ -38,7 +38,8 @@ spec:
           image: ubuntu
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
-            - find /eos.data              
+            - find
+            - /eos.data
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -47,7 +48,6 @@ spec:
             - bash
             - -ec
             - nodeos {{- if .Values.snapshot }} --snapshot=/eos.data/snapshots/snapshot-*.bin {{- end }} {{ include "eosnode.nodeargs" . }} {{ include "eosnode.morenodeargs" . }}
-          args: {{ toJson .Values.args }}
           ports:
             - containerPort: 8888
               protocol: TCP
