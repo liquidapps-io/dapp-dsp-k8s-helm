@@ -9,7 +9,7 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   type: {{ .Values.service.type }}
-{{- if .Values.service.loadBalancerSourceRanges }}  
+{{- if eq .Values.service.type "LoadBalancer" }}  
   loadBalancerSourceRanges: 
 {{- range $index, $cidr := .Values.service.loadBalancerSourceRanges | split "," }}
     - {{ $cidr }}
