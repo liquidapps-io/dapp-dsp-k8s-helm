@@ -8,7 +8,7 @@ replicaCount: 1
 image:
   repository: liquidapps/eosio-plugins
   tag: v1.6.1
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 service:
   port: 8888
