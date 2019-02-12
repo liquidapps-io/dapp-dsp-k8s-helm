@@ -27,7 +27,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: CLEAR_DB
-            value: "false"
+            value: "{{ .Values.clear }}"
           volumeMounts:
             - name: data
               mountPath: /eos.data
