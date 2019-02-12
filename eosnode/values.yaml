@@ -7,7 +7,7 @@ replicaCount: 1
 
 image:
   repository: liquidapps/eosio-plugins
-  tag: v1.6.1
+  tag: master
   pullPolicy: Always
 
 service:

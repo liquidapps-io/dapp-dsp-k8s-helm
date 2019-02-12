@@ -41,7 +41,9 @@ eosnode:
     - --disable-replay-opts
     - --max-transaction-time=5000
     - --abi-serializer-max-time-ms=15000 
-    - --plugin=eosio::zmq_plugin2
+    - --plugin=eosio::zmq_plugin
+    - --zmq-enable-actions
+    - true
     - --zmq-enable-transactions
     - true
     - --zmq-enable-push-socket
