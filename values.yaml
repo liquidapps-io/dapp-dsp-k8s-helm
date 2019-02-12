@@ -16,7 +16,10 @@ eosnode:
     port: 8888
     qport: 5556
     type: ClusterIP
-
+  image:
+    repository: liquidapps/eosio-plugins
+    tag: master
+    pullPolicy: Always
   snapshot: false
   clear: false    
   resources: {}  # Optionally specify how much CPU and memory (RAM) each nodeos container needs.
