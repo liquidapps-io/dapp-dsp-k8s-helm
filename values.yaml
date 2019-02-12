@@ -17,7 +17,7 @@ eosnode:
 
   service:
     port: 8888
-    type: LoadBalancer
+    type: ClusterIP
     loadBalancerSourceRanges: "0.0.0.0/0"
   
     
@@ -43,10 +43,7 @@ ipfs:
 dspnode:
   enabled: true
   replicaCount: 1
-  service:
-    type: LoadBalancer
-  replicaCount: 1
-  
+
   image:
     repository: liquidapps/eosio-plugins
     tag: v1.6.1
