@@ -31,15 +31,16 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /eos.data
-        - name: test
+        - name: link-latest
           volumeMounts:
             - name: data
               mountPath: /eos.data
           image: ubuntu
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
-            - find
-            - /eos.data
+            - bash
+            - -ec          
+            - ln -sf `ls /eos.data/snapshots/snapshot-* | head -n 1` /eos.data/snapshots/latest
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
