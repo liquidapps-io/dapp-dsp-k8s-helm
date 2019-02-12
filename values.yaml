@@ -42,9 +42,12 @@ eosnode:
     - --max-transaction-time=5000
     - --abi-serializer-max-time-ms=15000 
     - --plugin=eosio::zmq_plugin
-    - --zmq-enable-actions=true
-    - --zmq-enable-transactions=true
-    - --zmq-enable-push-socket=true
+    - --zmq-enable-actions
+    - true
+    - --zmq-enable-transactions
+    - true
+    - --zmq-enable-push-socket
+    - true
     - --zmq-sender-bind=tcp://0.0.0.0:5556
 ipfs:
   enabled: true
