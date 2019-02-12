@@ -17,6 +17,13 @@ service:
  
 # The argument passed to nodeos 
 args:
+  - -e 
+  - -p=eosio 
+  - --plugin=eosio::chain_plugin 
+  - --plugin=eosio::chain_api_plugin 
+  - --data-dir=/eos.data 
+  
+moreargs:
   - --chain-state-db-size-mb=786432 
   - --reversible-blocks-db-size-mb=2048 
   - --max-clients=150 

@@ -31,3 +31,7 @@ Create chart name and version as used by the chart label.
 {{- define "eosnode.nodeargs" -}}
 {{- join " " .Values.args }}
 {{- end -}}
+
+{{- define "eosnode.morenodeargs" -}}
+{{- join " " .Values.moreargs }}
+{{- end -}}
