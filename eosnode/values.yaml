@@ -27,6 +27,7 @@ args:
   - --disable-replay-opts
   - --max-transaction-time=5000
   - --abi-serializer-max-time-ms=15000
+  - --snapshot=/eos.data/snapshots/snapshot-*.bin
 
 clear: false
 persistence:

@@ -38,7 +38,7 @@ spec:
           command:
             - bash
             - -ec
-            - nodeos -e -p eosio --plugin eosio::chain_plugin --plugin eosio::chain_api_plugin --data-dir=/eos.data --snapshot /eos.data/snapshots/snapshot-*.bin {{ include "eosnode.nodeargs" . }}
+            - nodeos -e -p eosio --plugin eosio::chain_plugin --plugin eosio::chain_api_plugin --data-dir=/eos.data {{ include "eosnode.nodeargs" . }}
           args: {{ toJson .Values.args }}
           ports:
             - containerPort: 8888
