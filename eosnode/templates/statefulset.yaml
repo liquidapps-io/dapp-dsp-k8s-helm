@@ -31,6 +31,14 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /eos.data
+        - name: test
+          volumeMounts:
+            - name: data
+              mountPath: /eos.data
+          image: ubuntu
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - find /eos.data              
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -38,7 +46,7 @@ spec:
           command:
             - bash
             - -ec
-            - nodeos  --snapshot=/eos.data/snapshots/snapshot-*.bin {{ include "eosnode.nodeargs" . }} {{ include "eosnode.morenodeargs" . }}
+            - nodeos {{- if .Values.snapshot }} --snapshot=/eos.data/snapshots/snapshot-*.bin {{- end }} {{ include "eosnode.nodeargs" . }} {{ include "eosnode.morenodeargs" . }}
           args: {{ toJson .Values.args }}
           ports:
             - containerPort: 8888
