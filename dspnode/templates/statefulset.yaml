@@ -26,6 +26,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
+            - bash 
+            - -ec 
             - sleep 200
           args: {{ toJson .Values.args }}
           ports:
@@ -39,10 +41,6 @@ spec:
               port: 8888
           resources:
 {{ toYaml .Values.resources | indent 12 }}
-          volumeMounts:
-            - name: config-volume
-              mountPath: /usr/local/etc/eosio/genesis.json
-              subPath: genesis.json
 {{- if .Values.persistence.enabled }}
             - name: data
               mountPath: /root/.local/share/eosio
