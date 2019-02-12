@@ -27,7 +27,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: CLEAR_DB
-            value: "true"
+            value: "false"
           volumeMounts:
             - name: data
               mountPath: /eos.data
@@ -38,7 +38,7 @@ spec:
           command:
             - bash
             - -ec
-            - nodeos -e -p eosio --plugin eosio::chain_plugin --plugin eosio::chain_api_plugin  --data-dir=/eos.data  --chain-state-db-size-mb=786432 --reversible-blocks-db-size-mb=2048 --max-clients=150 --sync-fetch-span=2000  --http-server-address=0.0.0.0:8888 --http-validate-host=false --snapshot /eos.data/snapshots/snapshot-*.bin --force-all-checks --disable-replay-opts
+            - nodeos -e -p eosio --plugin eosio::chain_plugin --plugin eosio::chain_api_plugin  --data-dir=/eos.data  --chain-state-db-size-mb=786432 --reversible-blocks-db-size-mb=2048 --max-clients=150 --sync-fetch-span=2000  --http-server-address=0.0.0.0:8888 --http-validate-host=false --snapshot /eos.data/snapshots/snapshot-*.bin --force-all-checks --disable-replay-opts {{ include "eosnode.nodeargs" . }}
           args: {{ toJson .Values.args }}
           ports:
             - containerPort: 8888

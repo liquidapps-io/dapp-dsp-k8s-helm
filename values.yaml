@@ -14,22 +14,12 @@ eosnode:
   # Declare variables to be passed into your templates.
   enabled: true
   replicaCount: 1
-  image:
-    repository: liquidapps/eosio-plugins
-    tag: v1.6.1
-    pullPolicy: Always
-  
+
   service:
     port: 8888
     type: LoadBalancer
     loadBalancerSourceRanges: "0.0.0.0/0"
-   
-  # The argument passed to nodeos 
-  args:
-    - --max-transaction-timetest 
-    - "5000"
-    - --abi-serializer-max-time-ms 
-    - "15000"
+  
     
   resources: {}  # Optionally specify how much CPU and memory (RAM) each nodeos container needs.
     # We usually recommend not to specify default resources and to leave this as a conscious
