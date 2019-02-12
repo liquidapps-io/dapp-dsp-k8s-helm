@@ -17,7 +17,7 @@ service:
  
 # The argument passed to nodeos 
 args:
-  - --max-transaction-time 
+  - --max-transaction-timetest 
   - "5000"
   - --abi-serializer-max-time-ms 
   - "15000"
