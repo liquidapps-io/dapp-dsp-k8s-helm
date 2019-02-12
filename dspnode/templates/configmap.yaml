@@ -1,5 +1,3 @@
-{{- $intialKey := splitList "=KEY:" .Values.genesis.signatureProvider | first -}}
-{{- $myDict := dict "initial_timestamp" .Values.genesis.initial_timestamp  "initial_key" $intialKey "initial_configuration" .Values.genesis.initial_configuration -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -10,5 +8,5 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  genesis.json: |-
-    {{ toJson $myDict }}
+    test: dummy
+
