@@ -18,8 +18,7 @@ eosnode:
   service:
     port: 8888
     type: ClusterIP
-    loadBalancerSourceRanges: "0.0.0.0/0"
-  
+
     
   resources: {}  # Optionally specify how much CPU and memory (RAM) each nodeos container needs.
     # We usually recommend not to specify default resources and to leave this as a conscious
