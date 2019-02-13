@@ -40,9 +40,6 @@ eosnode:
     - --reversible-blocks-db-size-mb=2048
     - --max-clients=150
     - --http-validate-host=false 
-    - --contracts-console
-    - --plugin=eosio::zmq_plugin
-    - --zmq-sender-bind=tcp://0.0.0.0:5556
 ipfs:
   enabled: true
   replicaCount: 1
