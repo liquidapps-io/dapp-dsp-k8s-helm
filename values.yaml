@@ -21,8 +21,8 @@ eosnode:
     repository: liquidapps/eosio-plugins
     tag: v1.6.1
     pullPolicy: Always
-  snapshot: true
-  clear: true    
+  snapshot: false
+  clear: false
   download: false
   resources: {}  # Optionally specify how much CPU and memory (RAM) each nodeos container needs.
     # We usually recommend not to specify default resources and to leave this as a conscious
@@ -39,8 +39,13 @@ eosnode:
     - --chain-state-db-size-mb=786432 
     - --reversible-blocks-db-size-mb=2048
     - --max-clients=150
-    - --disable-replay-opts
     - --http-validate-host=false 
+    - --plugin=eosio::zmq_plugin
+    - --zmq-enable-actions
+    - true
+    - --zmq-enable-transactions
+    - true
+    - --zmq-sender-bind=tcp://0.0.0.0:5556
 ipfs:
   enabled: true
   replicaCount: 1
