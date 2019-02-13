@@ -22,8 +22,8 @@ args:
   - --plugin=eosio::chain_plugin 
   - --plugin=eosio::chain_api_plugin 
   - --data-dir=/eos.data 
-  - --p2p-listen-endpoint = 0.0.0.0:9876
-  - --p2p-server-address = 127.0.0.1:9876
+  - --p2p-listen-endpoint=0.0.0.0:9876
+  - --p2p-server-address=127.0.0.1:9876
   - --http-server-address=0.0.0.0:8888 
   - --chain-threads=8
   - --chain-state-db-guard-size-mb=128
