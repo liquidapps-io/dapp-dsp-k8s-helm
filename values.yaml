@@ -39,6 +39,7 @@ eosnode:
     - --chain-state-db-size-mb=786432 
     - --reversible-blocks-db-size-mb=2048
     - --max-clients=150
+    - --disable-replay-opts
     - --http-validate-host=false 
 ipfs:
   enabled: true
