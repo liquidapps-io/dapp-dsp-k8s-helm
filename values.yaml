@@ -20,8 +20,8 @@ eosnode:
     repository: liquidapps/eosio-plugins
     tag: v1.6.1
     pullPolicy: Always
-  snapshot: false
-  clear: false    
+  snapshot: true
+  clear: true    
   resources: {}  # Optionally specify how much CPU and memory (RAM) each nodeos container needs.
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
