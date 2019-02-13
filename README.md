@@ -32,7 +32,7 @@ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"templat
 ```
 wget https://raw.githubusercontent.com/liquidapps-io/dapp-dsp-k8s-helm/master/values.yaml -O dsp-config.yaml
 # edit dsp-config.yaml
-helm install -f dsp-config.yaml dsp
+helm install -f dsp-config.yaml liquidapps/dsp
 
 ```
 
