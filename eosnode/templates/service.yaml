@@ -19,12 +19,15 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: 8888
       protocol: TCP
+      name: api
     - port: {{ .Values.service.qport }}
       targetPort: 5556
       protocol: TCP
+      name: queue
     - port: {{ .Values.service.pport }}
       targetPort: 9876
       protocol: TCP
+      name: p2p
   selector:
     app: nodeos
     release: {{ .Release.Name }}
