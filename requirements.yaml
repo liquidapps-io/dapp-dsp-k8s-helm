@@ -1,19 +1,19 @@
 dependencies:
 - name: ipfs
-  version: 0.2.2
+  version: ~0.2.2
   repository: https://kubernetes-charts.storage.googleapis.com/
   condition: ipfs.enabled
   tags:
     - ipfs-cluster
 - name: eosnode
-  version: 0.1.0
-  repository: file://./eosnode
+  version: ~0.1.0
+  repository: https://github.com/liquidapps-io/eosio-node-k8s-helm/archive/v0.5.tar.gz
   condition: eosnode.enabled
   tags:
     - eosio
     - eosnode
 - name: dspnode
-  version: 0.1.0
+  version: ~0.1.0
   repository: file://./dspnode
   condition: dspnode.enabled
   tags:
