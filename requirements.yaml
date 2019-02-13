@@ -7,7 +7,7 @@ dependencies:
     - ipfs-cluster
 - name: eosnode
   version: ~0.1.0
-  repository: https://s3-us-west-2.amazonaws.com/liquidapps-helm-charts/
+  repository: liquidapps
   condition: eosnode.enabled
   tags:
     - eosio

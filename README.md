@@ -19,6 +19,7 @@ sudo snap install helm --classic
 Run:
 ```
 helm init
+helm repo add liquidapps https://s3-us-west-2.amazonaws.com/liquidapps-helm-charts/
 helm update repo
 
 kubectl create serviceaccount --namespace kube-system tiller 
@@ -26,16 +27,12 @@ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admi
 kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 
 ```
-### Setup dashboard
-```
-helm install stable/kubernetes-dashboard
-```
+
 ### Install DAPP-DSP helm chart
 ```
-wget https://.../charts/dapp-dsp-config.yaml
-helm dependency update
-helm install -f dapp-dsp-config.yaml https://.../charts/dapp-dsp.tgz
-
+wget https://raw.githubusercontent.com/liquidapps-io/dapp-dsp-k8s-helm/master/values.yaml -O dsp-config.yaml
+# edit dsp-config.yaml
+helm install -f dsp-config.yaml dsp
 
 ```
 
