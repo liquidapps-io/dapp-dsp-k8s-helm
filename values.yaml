@@ -18,7 +18,7 @@ eosnode:
     type: ClusterIP
   image:
     repository: liquidapps/eosio-plugins
-    tag: master
+    tag: v1.6.1
     pullPolicy: Always
   snapshot: false
   clear: false    
