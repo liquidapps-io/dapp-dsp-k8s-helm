@@ -7,7 +7,7 @@ dependencies:
     - ipfs-cluster
 - name: eosnode
   version: ~0.1.0
-  repository: https://github.com/liquidapps-io/eosio-node-k8s-helm/archive/v0.5.tar.gz
+  repository: https://s3-us-west-2.amazonaws.com/liquidapps-helm-charts/
   condition: eosnode.enabled
   tags:
     - eosio
