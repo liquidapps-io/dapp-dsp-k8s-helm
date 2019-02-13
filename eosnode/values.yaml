@@ -13,6 +13,7 @@ image:
 service:
   port: 8888
   qport: 5556
+  pport: 9876
   type: LoadBalancer
   loadBalancerSourceRanges: "0.0.0.0/0"
  
@@ -164,7 +165,7 @@ moreargs:
   - --abi-serializer-max-time-ms=15000
 
 snapshot: true
-
+download: false
 clear: true
 persistence:
   enabled: true

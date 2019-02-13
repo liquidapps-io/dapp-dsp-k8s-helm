@@ -19,9 +19,11 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: 8888
       protocol: TCP
-  ports:
     - port: {{ .Values.service.qport }}
       targetPort: 5556
+      protocol: TCP
+    - port: {{ .Values.service.pport }}
+      targetPort: 9876
       protocol: TCP
   selector:
     app: nodeos

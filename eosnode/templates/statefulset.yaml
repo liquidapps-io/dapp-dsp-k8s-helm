@@ -28,6 +28,8 @@ spec:
           env:
           - name: CLEAR_DB
             value: "{{ .Values.clear }}"
+          - name: DOWNLOAD_NEW
+            value: "{{ .Values.download }}"            
           volumeMounts:
             - name: data
               mountPath: /eos.data

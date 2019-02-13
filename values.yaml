@@ -15,6 +15,7 @@ eosnode:
   service:
     port: 8888
     qport: 5556
+    pport: 9876
     type: ClusterIP
   image:
     repository: liquidapps/eosio-plugins
@@ -22,6 +23,7 @@ eosnode:
     pullPolicy: Always
   snapshot: true
   clear: true    
+  download: false
   resources: {}  # Optionally specify how much CPU and memory (RAM) each nodeos container needs.
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
