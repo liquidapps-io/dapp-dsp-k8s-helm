@@ -37,12 +37,11 @@ eosnode:
     - --chain-state-db-size-mb=786432 
     - --reversible-blocks-db-size-mb=2048
     - --max-clients=150
-    - --sync-fetch-span=2000
     - --http-validate-host=false 
     - --force-all-checks
     - --disable-replay-opts
     - --max-transaction-time=5000
-    - --contracts-console
+    - --contracts-console=true
     - --abi-serializer-max-time-ms=15000 
     - --plugin=eosio::zmq_plugin
     - --zmq-enable-actions
