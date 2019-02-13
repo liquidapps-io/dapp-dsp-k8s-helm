@@ -28,7 +28,7 @@ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"templat
 
 ```
 
-### Install DAPP-DSP helm chart
+### Install the DAPP-DSP helm chart
 ```
 wget https://raw.githubusercontent.com/liquidapps-io/dapp-dsp-k8s-helm/master/values.yaml -O dsp-config.yaml
 # edit dsp-config.yaml
