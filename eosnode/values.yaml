@@ -165,7 +165,7 @@ moreargs:
 
 snapshot: true
 
-clear: false
+clear: true
 persistence:
   enabled: true
   # storageClass: "-"
