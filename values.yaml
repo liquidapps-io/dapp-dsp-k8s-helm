@@ -41,7 +41,7 @@ eosnode:
     - --force-all-checks
     - --disable-replay-opts
     - --max-transaction-time=5000
-    - --contracts-console=true
+    - --contracts-console
     - --abi-serializer-max-time-ms=15000 
     - --plugin=eosio::zmq_plugin
     - --zmq-enable-actions
