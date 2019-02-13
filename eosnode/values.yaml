@@ -30,7 +30,6 @@ args:
   - --reversible-blocks-db-guard-size-mb=2
   - --max-irreversible-block-age=-1
   - --txn-reference-block-lag=0
-  - --enable-stale-production=false
   - --connection-cleanup-period=30
   - --network-version-match=0
   - --sync-fetch-span=2000
