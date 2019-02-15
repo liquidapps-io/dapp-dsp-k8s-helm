@@ -44,8 +44,10 @@ spec:
           ports:
             - containerPort: 8888
               protocol: TCP
+              name: api
             - containerPort: 8812
               protocol: TCP
+              name: webhook
           readinessProbe:
             httpGet:
               path: /v1/chain/get_info
