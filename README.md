@@ -28,7 +28,7 @@ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"templat
 
 ```
 
-### Install the DAPP-DSP helm chart
+### Clone the DAPP-DSP helm chart
 
 ```bash
 git clone https://github.com/liquidapps-io/dapp-dsp-k8s-helm.git
