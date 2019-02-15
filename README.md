@@ -40,13 +40,13 @@ git clone git clone https://github.com/liquidapps-io/eosio-node-k8s-helm.git nod
 ### Deploy
 Restore from snapshot:
 ```bash
-helm install --set eosnode.snapshot=true .
+helm install --set eosnode.snapshot=true . --name dsp
 ```
 Or restore from full backup and replay:
 ```bash
-helm install --set eosnode.snapshot=true --set eosnode.replay=true .
+helm install --set eosnode.snapshot=true --set eosnode.replay=true . --name dsp
 ```
 Or resume after first restore:
 ```bash
-helm install .
+helm install . --name dsp
 ```
