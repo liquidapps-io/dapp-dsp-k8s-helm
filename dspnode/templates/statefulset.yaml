@@ -25,9 +25,8 @@ spec:
         - name: {{ .Chart.Name }}-gw
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          entrypoint:
-            - node
           command:
+            - node
             - services/dapp-services-node/index.js
           env:
           - name: SVC_PORT
@@ -52,11 +51,10 @@ spec:
               path: /v1/chain/get_info
               port: 8888
         - name: {{ .Chart.Name }}-demux
-          entrypoint:
-            - node
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
+            - node
             - services/demux/index.js
           env:
           - name: DISCOVER_DAPP_SVC
@@ -66,11 +64,10 @@ spec:
           - name: NODEOS_HOST
             value: "{{ .Chart.Name }}-nodeos"
         - name: {{ .Chart.Name }}-ipfs-svc
-          entrypoint:
-            - node
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
+            - node
             - services/ipfs-dapp-service-node/index.js
           env:
           - name: SVC_PORT
@@ -92,8 +89,6 @@ spec:
               path: /v1/chain/get_info
               port: 8888
         - name: {{ .Chart.Name }}-log-svc
-          entrypoint:
-            - node
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
@@ -104,6 +99,7 @@ spec:
               path: /v1/chain/get_info
               port: 8888          
           command:
+            - node
             - services/log-dapp-service-node/index.js
           env:
           - name: DISCOVER_DAPP_SVC
