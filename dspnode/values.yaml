@@ -15,10 +15,8 @@ service:
   type: LoadBalancer
   loadBalancerSourceRanges: "0.0.0.0/0"
  
-chainid: a
+chainid: aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906
 dspaccount: a
-nodehost: {{ .Chart.Name }}-nodeos
-ipfshost: {{ .Chart.Name }}-ipfs
 
 persistence:
   enabled: false

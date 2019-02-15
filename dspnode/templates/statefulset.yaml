@@ -35,7 +35,7 @@ spec:
           - name: NODEOS_CHAINID
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
-            value: "{{ .Values.nodehost }}"           
+            value: "{{ .Chart.Name }}-nodeos"
           - name: DSP_ACCOUNT
             value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
@@ -60,7 +60,7 @@ spec:
           - name: NODEOS_CHAINID
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
-            value: "{{ .Values.nodehost }}"           
+            value: "{{ .Chart.Name }}-nodeos"
         - name: {{ .Chart.Name }}-ipfs-svc
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -74,9 +74,9 @@ spec:
           - name: NODEOS_CHAINID
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
-            value: "{{ .Values.nodehost }}"           
+            value: "{{ .Chart.Name }}-nodeos"
           - name: IPFS_HOST
-            value: "{{ .Values.ipfshost }}"
+            value: "{{ .Chart.Name }}-ipfs"
           - name: DSP_ACCOUNT
             value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
