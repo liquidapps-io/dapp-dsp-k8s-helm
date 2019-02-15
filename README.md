@@ -45,7 +45,7 @@ helm install --set eosnode.snapshot=true . --name dsp
 ```
 Or restore from full backup and replay:
 ```bash
-helm install --set eosnode.snapshot=true --set eosnode.replay=true . --name dsp
+helm install --set eosnode.replay=true . --name dsp
 ```
 Or resume after first restore:
 ```bash
