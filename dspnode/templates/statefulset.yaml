@@ -22,52 +22,97 @@ spec:
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-        - name: {{ .Chart.Name }}
+        - name: {{ .Chart.Name }}-gw
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
-            - bash 
-            - -ec 
-            - sleep 200
-          args: {{ toJson .Values.args }}
+            - services/dapp-services-node/index.js
+          env:
+          - name: DISCOVER_DAPP_SVC
+            value: "true"
+          - name: NODEOS_CHAINID
+            value: "{{ .Values.chainid }}"
+          - name: NODEOS_HOST
+            value: "{{ .Values.download }}"           
+          - name: DSP_ACCOUNT
+            value: "{{ .Values.download }}"
+          - name: DSP_PRIVATE_KEY
+            value: "{{ .Values.download }}"
           ports:
             - containerPort: 8888
               protocol: TCP
-            - containerPort: 9876
+            - containerPort: 8812
               protocol: TCP
           readinessProbe:
             httpGet:
               path: /v1/chain/get_info
               port: 8888
-          resources:
-{{ toYaml .Values.resources | indent 12 }}
-{{- if .Values.persistence.enabled }}
-            - name: data
-              mountPath: /root/.local/share/eosio
-{{- end }}
+        - name: {{ .Chart.Name }}-demux
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - services/demux/index.js
+          env:
+          - name: DISCOVER_DAPP_SVC
+            value: "true"
+          - name: NODEOS_CHAINID
+            value: "{{ .Values.chainid }}"
+          - name: NODEOS_HOST
+            value: "{{ .Values.download }}"           
+        - name: {{ .Chart.Name }}-ipfs-svc
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - services/ipfs-dapp-service-node/index.js
+          env:
+          - name: SVC_PORT
+            value: 8888
+          - name: DISCOVER_DAPP_SVC
+            value: "true"
+          - name: NODEOS_CHAINID
+            value: "{{ .Values.chainid }}"
+          - name: NODEOS_HOST
+            value: "{{ .Values.download }}"           
+          - name: IPFS_HOST
+            value: "{{ .Values.download }}"
+          - name: DSP_ACCOUNT
+            value: "{{ .Values.download }}"
+          - name: DSP_PRIVATE_KEY
+            value: "{{ .Values.download }}"
+          readinessProbe:
+            httpGet:
+              path: /v1/chain/get_info
+              port: 8888
+        - name: {{ .Chart.Name }}-log-svc
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8888
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /v1/chain/get_info
+              port: 8888          
+          command:
+            - services/log-dapp-service-node/index.js
+          env:
+          - name: DISCOVER_DAPP_SVC
+            value: "true"
+          - name: NODEOS_CHAINID
+            value: "{{ .Values.chainid }}"
+          - name: NODEOS_HOST
+            value: "{{ .Values.download }}"           
+          - name: DSP_ACCOUNT
+            value: "{{ .Values.download }}"
+          - name: DSP_PRIVATE_KEY
+            value: "{{ .Values.download }}"
+          - name: SVC_PORT
+            value: 8888
+          readinessProbe:
+            httpGet:
+              path: /v1/chain/get_info
+              port: 8888
       volumes:
         - name: config-volume
           configMap:
             name: {{ include "dspnode.fullname" . }}
-{{- if .Values.persistence.enabled }}
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-        labels:
-          app: {{ include "dspnode.name" . }}
-          chart: {{ include "dspnode.chart" . }}
-          release: {{ .Release.Name }}
-          heritage: {{ .Release.Service }}
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        resources:
-          requests:
-            storage: {{ .Values.persistence.size | quote }}
-      {{- if .Values.persistence.storageClass }}
-        {{- if (eq "-" .Values.persistence.storageClass) }}
-        storageClassName: ""
-        {{- else }}
-        storageClassName: "{{ .Values.persistence.storageClass }}"
-        {{- end }}        
-      {{- end }}
-{{- end }}
