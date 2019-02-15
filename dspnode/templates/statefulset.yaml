@@ -28,16 +28,18 @@ spec:
           command:
             - services/dapp-services-node/index.js
           env:
+          - name: SVC_PORT
+            value: 8888
           - name: DISCOVER_DAPP_SVC
             value: "true"
           - name: NODEOS_CHAINID
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
-            value: "{{ .Values.download }}"           
+            value: "{{ .Values.nodehost }}"           
           - name: DSP_ACCOUNT
-            value: "{{ .Values.download }}"
+            value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
-            value: "{{ .Values.download }}"
+            value: aaa
           ports:
             - containerPort: 8888
               protocol: TCP
@@ -58,7 +60,7 @@ spec:
           - name: NODEOS_CHAINID
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
-            value: "{{ .Values.download }}"           
+            value: "{{ .Values.nodehost }}"           
         - name: {{ .Chart.Name }}-ipfs-svc
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -72,13 +74,13 @@ spec:
           - name: NODEOS_CHAINID
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
-            value: "{{ .Values.download }}"           
+            value: "{{ .Values.nodehost }}"           
           - name: IPFS_HOST
-            value: "{{ .Values.download }}"
+            value: "{{ .Values.ipfshost }}"
           - name: DSP_ACCOUNT
-            value: "{{ .Values.download }}"
+            value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
-            value: "{{ .Values.download }}"
+            value: aaa
           readinessProbe:
             httpGet:
               path: /v1/chain/get_info
@@ -101,11 +103,11 @@ spec:
           - name: NODEOS_CHAINID
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
-            value: "{{ .Values.download }}"           
+            value: "{{ .Values.nodehost }}"
           - name: DSP_ACCOUNT
-            value: "{{ .Values.download }}"
+            value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
-            value: "{{ .Values.download }}"
+            value: aaa
           - name: SVC_PORT
             value: 8888
           readinessProbe:
