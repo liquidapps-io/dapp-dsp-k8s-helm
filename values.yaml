@@ -16,7 +16,7 @@ eosnode:
     port: 8888
     qport: 5556
     pport: 9876
-    type: NodePort
+    type: LoadBalancer
   snapshot: false
   clear: false
   replay: false
