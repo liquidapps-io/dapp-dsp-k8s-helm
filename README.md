@@ -34,6 +34,7 @@ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"templat
 git clone https://github.com/liquidapps-io/dapp-dsp-k8s-helm.git
 cd dapp-dsp-k8s-helm
 git clone git clone https://github.com/liquidapps-io/eosio-node-k8s-helm.git nodeos
+helm dependency update
 ```
 ### Edit values.yaml
 
