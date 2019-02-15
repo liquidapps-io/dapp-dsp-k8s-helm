@@ -15,7 +15,7 @@ spec:
 {{- end }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: 8888
+      targetPort: 3115
       protocol: TCP
       name: api
     - port: 8812
