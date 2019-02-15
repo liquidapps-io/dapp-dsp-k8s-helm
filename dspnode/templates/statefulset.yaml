@@ -25,6 +25,8 @@ spec:
         - name: {{ .Chart.Name }}-gw
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          entrypoint:
+            - node
           command:
             - services/dapp-services-node/index.js
           env:
@@ -50,6 +52,8 @@ spec:
               path: /v1/chain/get_info
               port: 8888
         - name: {{ .Chart.Name }}-demux
+          entrypoint:
+            - node
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
@@ -62,6 +66,8 @@ spec:
           - name: NODEOS_HOST
             value: "{{ .Chart.Name }}-nodeos"
         - name: {{ .Chart.Name }}-ipfs-svc
+          entrypoint:
+            - node
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
@@ -86,6 +92,8 @@ spec:
               path: /v1/chain/get_info
               port: 8888
         - name: {{ .Chart.Name }}-log-svc
+          entrypoint:
+            - node
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
