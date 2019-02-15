@@ -37,10 +37,8 @@ eosnode:
     - --max-clients=150
     - --http-validate-host=false 
     - --contracts-console
-    - --plugin=eosio::zmq_plugin
     - --zmq-enable-actions
     - --zmq-sender-bind=tcp://0.0.0.0:5556
-    - --zmq-publisher-bind=tcp://0.0.0.0:5557
     - --zmq-enable-push-socket
 ipfs:
   enabled: true
