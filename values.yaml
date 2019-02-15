@@ -17,10 +17,6 @@ eosnode:
     qport: 5556
     pport: 9876
     type: ClusterIP
-  image:
-    repository: liquidapps/eosio-plugins
-    tag: v1.6.1
-    pullPolicy: Always
   snapshot: false
   clear: false
   download: false
@@ -57,12 +53,6 @@ ipfs:
 dspnode:
   enabled: true
   replicaCount: 1
-
-  image:
-    repository: ubuntu
-    tag: latest
-    pullPolicy: Always
-
   service:
     port: 8888
     type: LoadBalancer

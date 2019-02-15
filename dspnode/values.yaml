@@ -6,8 +6,8 @@ enabled: true
 replicaCount: 1
 
 image:
-  repository: liquidapps/eosio-plugins
-  tag: v1.6.1
+  repository: eosio-dsp
+  tag: latest
   pullPolicy: Always
 
 service:
@@ -15,12 +15,6 @@ service:
   type: LoadBalancer
   loadBalancerSourceRanges: "0.0.0.0/0"
  
-# The argument passed to nodeos 
-args:
-  - --max-transaction-time 
-  - "5000"
-  - --abi-serializer-max-time-ms 
-  - "15000"
 
 persistence:
   enabled: false
