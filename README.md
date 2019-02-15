@@ -12,12 +12,12 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
 
 Download client from: https://docs.helm.sh/using_helm/#installing-helm
 #### Ubuntu
-```
+```bash
 sudo snap install helm --classic
 ```
 
 Run:
-```
+```bash
 helm init
 helm repo add liquidapps https://s3-us-west-2.amazonaws.com/liquidapps-helm-charts/
 helm update repo
@@ -29,10 +29,19 @@ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"templat
 ```
 
 ### Install the DAPP-DSP helm chart
-```
-wget https://raw.githubusercontent.com/liquidapps-io/dapp-dsp-k8s-helm/master/values.yaml -O dsp-config.yaml
-# edit dsp-config.yaml
-helm install -f dsp-config.yaml liquidapps/dsp
 
+```bash
+git clone https://github.com/liquidapps-io/dapp-dsp-k8s-helm.git
+cd dapp-dsp-k8s-helm
 ```
+### Edit values.yaml
 
+### Deploy
+Restore from snapshot:
+```bash
+helm install --set eosnode.snapshot=true .
+```
+Or restore from full backup and replay:
+```bash
+helm install --set eosnode.snapshot=true --set replay=true .
+```
