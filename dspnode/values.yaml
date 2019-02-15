@@ -17,8 +17,8 @@ service:
  
 chainid: a
 dspaccount: a
-nodehost: localhost
-ipfshost: localhost
+nodehost: {{ .Chart.Name }}-nodeos
+ipfshost: {{ .Chart.Name }}-ipfs
 
 persistence:
   enabled: false
