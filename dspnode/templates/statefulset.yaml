@@ -29,7 +29,7 @@ spec:
             - services/dapp-services-node/index.js
           env:
           - name: SVC_PORT
-            value: 8888
+            value: "8888"
           - name: DISCOVER_DAPP_SVC
             value: "true"
           - name: NODEOS_CHAINID
@@ -39,7 +39,7 @@ spec:
           - name: DSP_ACCOUNT
             value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
-            value: aaa
+            value: "aaa"
           ports:
             - containerPort: 8888
               protocol: TCP
@@ -68,7 +68,7 @@ spec:
             - services/ipfs-dapp-service-node/index.js
           env:
           - name: SVC_PORT
-            value: 8888
+            value: "8888"
           - name: DISCOVER_DAPP_SVC
             value: "true"
           - name: NODEOS_CHAINID
@@ -80,7 +80,7 @@ spec:
           - name: DSP_ACCOUNT
             value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
-            value: aaa
+            value: "aaa"
           readinessProbe:
             httpGet:
               path: /v1/chain/get_info
@@ -107,9 +107,9 @@ spec:
           - name: DSP_ACCOUNT
             value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
-            value: aaa
+            value: "aaa"
           - name: SVC_PORT
-            value: 8888
+            value: "8888"
           readinessProbe:
             httpGet:
               path: /v1/chain/get_info
