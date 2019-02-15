@@ -6,7 +6,7 @@ enabled: true
 replicaCount: 1
 
 image:
-  repository: eosio-dsp
+  repository: liquidapps/eosio-dsp
   tag: latest
   pullPolicy: Always
 
