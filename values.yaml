@@ -39,10 +39,8 @@ eosnode:
     - --contracts-console
     - --plugin=eosio::zmq_plugin
     - --zmq-enable-actions
-    - true
-    - --zmq-enable-transactions
-    - true
     - --zmq-sender-bind=tcp://0.0.0.0:5556
+    - --zmq-enable-push-socket
 ipfs:
   enabled: true
   replicaCount: 1
