@@ -43,5 +43,9 @@ helm install --set eosnode.snapshot=true .
 ```
 Or restore from full backup and replay:
 ```bash
-helm install --set eosnode.snapshot=true --set replay=true .
+helm install --set eosnode.snapshot=true --set eosnode.replay=true .
+```
+Or resume after first restore:
+```bash
+helm install .
 ```
