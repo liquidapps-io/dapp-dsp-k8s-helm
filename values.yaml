@@ -17,8 +17,8 @@ eosnode:
     qport: 5556
     pport: 9876
     type: ClusterIP
-  snapshot: false
-  clear: false
+  snapshot: true
+  clear: true
   download: false
   resources: {}  # Optionally specify how much CPU and memory (RAM) each nodeos container needs.
     # We usually recommend not to specify default resources and to leave this as a conscious
