@@ -29,8 +29,6 @@ spec:
             - node
             - services/dapp-services-node/index.js
           env:
-          - name: SVC_PORT
-            value: "8888"
           - name: DISCOVER_DAPP_SVC
             value: "true"
           - name: NODEOS_CHAINID
@@ -51,7 +49,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /v1/chain/get_info
-              port: 8888
+              port: 3115
         - name: {{ .Chart.Name }}-demux
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -72,8 +70,6 @@ spec:
             - node
             - services/ipfs-dapp-service-node/index.js
           env:
-          - name: SVC_PORT
-            value: "8888"
           - name: DISCOVER_DAPP_SVC
             value: "true"
           - name: NODEOS_CHAINID
@@ -86,20 +82,25 @@ spec:
             value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
             value: "aaa"
+          ports:
+            - containerPort: 13115
+              protocol: TCP
+              name: ipfs
           readinessProbe:
             httpGet:
               path: /v1/chain/get_info
-              port: 8888
+              port: 13115
         - name: {{ .Chart.Name }}-log-svc
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 8888
+            - containerPort: 13110
               protocol: TCP
           readinessProbe:
             httpGet:
               path: /v1/chain/get_info
-              port: 8888          
+              port: 13110
+              name: log
           command:
             - node
             - services/log-dapp-service-node/index.js
@@ -114,12 +115,6 @@ spec:
             value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
             value: "aaa"
-          - name: SVC_PORT
-            value: "8888"
-          readinessProbe:
-            httpGet:
-              path: /v1/chain/get_info
-              port: 8888
       volumes:
         - name: config-volume
           configMap:

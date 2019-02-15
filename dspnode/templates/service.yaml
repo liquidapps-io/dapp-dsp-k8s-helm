@@ -18,10 +18,6 @@ spec:
       targetPort: 3115
       protocol: TCP
       name: api
-    - port: 8812
-      targetPort: 8812
-      protocol: TCP
-      name: webhook     
   selector:
     app: nodeos
     release: {{ .Release.Name }}
