@@ -39,7 +39,7 @@ eosnode:
     - --contracts-console
     - --zmq-enable-actions
     - --zmq-sender-bind=tcp://0.0.0.0:5556
-    - --zmq-enable-push-socket
+    - --zmq-enable-pub-socket
 ipfs:
   enabled: true
   replicaCount: 1
