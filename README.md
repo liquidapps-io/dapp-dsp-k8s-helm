@@ -1,6 +1,14 @@
 # Deploying a full mainnet DAPP-DSP using K8S
 This helm chart will install an full mainnet DSP cluster (Syncd Mainnet API Node, DAPP DSP Services, IPFS Cluster)
 ## Getting started
+
+### Minimum cluster requirements
+
+CPU: 4x2.2GHz Cores
+Memory: 64GB memory
+Network: 1 GigE
+Disk: 1TB
+
 ### AWS
 https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
 
@@ -8,14 +16,17 @@ https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
 https://cloud.google.com/kubernetes-engine/docs/quickstart
 
 ## Deployment
-### Run boostrap
+### Run boostrap container
 ```bash
 docker run --rm -it -v $HOME/.kube/config:/root/.kube/config liquidapps/zeus-dsp-bootstrap 
+```
 
-# inside the container shell:
+Inside the container shell:
+```bash
+# install helm on cluster
 helm init
 helm repo update
-
+# patch helm
 kubectl create serviceaccount --namespace kube-system tiller 
 kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller 
 kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
@@ -36,7 +47,22 @@ Or resume after first restore:
 zeus deploy dapp-cluster dspaccount --key yourdspprivatekey --snapshot=false
 ```
 
-### Manually installing helm and zeus (alternative method)
+### Monitor restore and sync progress
+```bash
+kubectl logs -f dsp-nodeos-0 --all-containers
+```
+
+## Register a service package
+
+https://github.com/liquidapps-io/zeus-dapp-network/blob/master/README-DSP.md#register
+
+## Test your DSP
+```bash
+[TBD]
+```
+
+## Misc:
+### Manually installing helm and zeus (boostrap container alternative)
 #### Install helm
 Download client from: https://docs.helm.sh/using_helm/#installing-helm
 ##### Ubuntu
@@ -55,21 +81,9 @@ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"templat
 ```
 
 #### Install zeus
-
 https://github.com/liquidapps-io/zeus-cmd
-
-
 #### Unpack release box
 ```bash
 zeus unbox dapp-cluster-k8s
 cd dapp-cluster-k8s
 ```
-
-## Monitor restore and sync progress
-```bash
-kubectl logs -f dsp-nodeos-0 --all-containers
-```
-
-## Register a service package:
-https://github.com/liquidapps-io/zeus-dapp-network/blob/master/README-DSP.md#register
-
