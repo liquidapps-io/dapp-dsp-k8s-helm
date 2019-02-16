@@ -1,22 +1,26 @@
 # Deploy & Register a full mainnet DAPP-DSP using K8S
 This helm chart will install an full mainnet DSP cluster (Syncd Mainnet API Node, DAPP DSP Services, IPFS Cluster)
 
-## Getting started
-### Minimum cluster requirements
+## Minimum cluster requirements
 
 * CPU: 4x2.2GHz Cores
 * Memory: 64GB memory
 * Network: 1 GigE
 * Disk: 1TB
 
+## Getting started
 ### AWS
 https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
 
-### GCP
+### GCP - Untested
 https://cloud.google.com/kubernetes-engine/docs/quickstart
 
 ## Deployment
-### Run boostrap container
+### Make sure kubectl is installed and configured and nodes are running
+```
+kubectl get nodes
+```
+### Run boostrap container 
 ```bash
 docker run --rm -it -v $HOME/.kube/config:/root/.kube/config \
     liquidapps/zeus-dsp-bootstrap 
