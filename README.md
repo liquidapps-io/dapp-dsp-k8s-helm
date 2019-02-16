@@ -18,7 +18,8 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
 ## Deployment
 ### Run boostrap container
 ```bash
-docker run --rm -it -v $HOME/.kube/config:/root/.kube/config liquidapps/zeus-dsp-bootstrap 
+docker run --rm -it -v $HOME/.kube/config:/root/.kube/config \
+    liquidapps/zeus-dsp-bootstrap 
 ```
 
 Inside the container shell:
@@ -28,8 +29,10 @@ helm init
 helm repo update
 # patch helm
 kubectl create serviceaccount --namespace kube-system tiller 
-kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller 
-kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+kubectl create clusterrolebinding tiller-cluster-rule \
+    --clusterrole=cluster-admin --serviceaccount=kube-system:tiller 
+kubectl patch deploy --namespace kube-system tiller-deploy \
+    -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 ```
 
 ### Edit values.yaml (optional)
