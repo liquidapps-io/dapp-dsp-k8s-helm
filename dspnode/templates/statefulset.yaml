@@ -29,8 +29,16 @@ spec:
             - node
             - services/dapp-services-node/index.js
           env:
-          - name: DISCOVER_DAPP_SVC
-            value: "true"
+          - name: DAPPSERVICES_CONTRACT
+            value: "{{ .Values.contracts.dappservices }}"
+          - name: DAPPSERVICES_CONTRACT_IPFS
+            value: "{{ .Values.contracts.ipfs }}"
+          - name: DAPPSERVICES_CONTRACT_LOG
+            value: "{{ .Values.contracts.ipfs }}"
+          - name: DAPPSERVICE_HOST_IPFS
+            value: "{{ .Chart.Name }}-ipfs-svc"
+          - name: DAPPSERVICE_HOST_LOG
+            value: "{{ .Chart.Name }}-log-svc"
           - name: NODEOS_CHAINID
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
@@ -38,7 +46,7 @@ spec:
           - name: DSP_ACCOUNT
             value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
-            value: "aaa"
+            value: "{{ .Values.dspkey }}"
           ports:
             - containerPort: 3115
               protocol: TCP
@@ -57,14 +65,14 @@ spec:
             - node
             - services/demux/index.js
           env:
-          - name: DISCOVER_DAPP_SVC
-            value: "true"
           - name: NODEOS_CHAINID
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
             value: "{{ .Release.Name }}-nodeos"
           - name: NODEOS_ZMQ_PORT 
             value: "5557"
+          - name: WEBHOOKS_HOST 
+            value: "gw"
         - name: {{ .Chart.Name }}-ipfs-svc
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -72,8 +80,16 @@ spec:
             - node
             - services/ipfs-dapp-service-node/index.js
           env:
-          - name: DISCOVER_DAPP_SVC
-            value: "true"
+          - name: DAPPSERVICES_CONTRACT
+            value: "{{ .Values.contracts.dappservices }}"
+          - name: DAPPSERVICES_CONTRACT_IPFS
+            value: "{{ .Values.contracts.ipfs }}"
+          - name: DAPPSERVICES_CONTRACT_LOG
+            value: "{{ .Values.contracts.ipfs }}"
+          - name: DAPPSERVICE_HOST_IPFS
+            value: "{{ .Chart.Name }}-ipfs-svc"
+          - name: DAPPSERVICE_HOST_LOG
+            value: "{{ .Chart.Name }}-log-svc"
           - name: NODEOS_CHAINID
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
@@ -83,7 +99,7 @@ spec:
           - name: DSP_ACCOUNT
             value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
-            value: "aaa"
+            value: "{{ .Values.dspkey }}"
           ports:
             - containerPort: 13115
               protocol: TCP
@@ -107,8 +123,16 @@ spec:
             - node
             - services/log-dapp-service-node/index.js
           env:
-          - name: DISCOVER_DAPP_SVC
-            value: "true"
+          - name: DAPPSERVICES_CONTRACT
+            value: "{{ .Values.contracts.dappservices }}"
+          - name: DAPPSERVICES_CONTRACT_IPFS
+            value: "{{ .Values.contracts.ipfs }}"
+          - name: DAPPSERVICES_CONTRACT_LOG
+            value: "{{ .Values.contracts.ipfs }}"
+          - name: DAPPSERVICE_HOST_IPFS
+            value: "{{ .Chart.Name }}-ipfs-svc"
+          - name: DAPPSERVICE_HOST_LOG
+            value: "{{ .Chart.Name }}-log-svc"
           - name: NODEOS_CHAINID
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
@@ -116,7 +140,7 @@ spec:
           - name: DSP_ACCOUNT
             value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
-            value: "aaa"
+            value: "{{ .Values.dspkey }}"
       volumes:
         - name: config-volume
           configMap:

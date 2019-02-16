@@ -27,27 +27,26 @@ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admi
 kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 
 ```
+### Install the Zeus SDK
 
-### Clone the DAPP-DSP helm chart
+https://github.com/liquidapps-io/zeus-cmd
+
+### Unbox the release
 
 ```bash
-git clone https://github.com/liquidapps-io/dapp-dsp-k8s-helm.git
-cd dapp-dsp-k8s-helm
-git clone https://github.com/liquidapps-io/eosio-node-k8s-helm.git nodeos
-helm dependency update
+zeus unbox dapp-cluster-k8s
 ```
-### Edit values.yaml
-
+### Edit values.yaml (optional)
 ### Deploy
 Restore from snapshot:
 ```bash
-helm install --set eosnode.snapshot=true . --name dsp
+zeus deploy dapp-cluster dspaccount --key yourdspprivatekey
 ```
 Or restore from full backup and replay:
 ```bash
-helm install --set eosnode.replay=true . --name dsp
+zeus deploy dapp-cluster dspaccount --key yourdspprivatekey --full-replay=true 
 ```
 Or resume after first restore:
 ```bash
-helm install . --name dsp
+zeus deploy dapp-cluster dspaccount --key yourdspprivatekey --snapshot=false
 ```

@@ -17,7 +17,13 @@ service:
  
 chainid: aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906
 dspaccount: a
+dspkey: a
 
+contracts:
+  dappservices: dappservices
+  ipfs: ipfservice1
+  logs: logservices1
+  
 persistence:
   enabled: false
   ## A manually managed Persistent Volume and Claim
