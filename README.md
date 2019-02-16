@@ -4,10 +4,10 @@ This helm chart will install an full mainnet DSP cluster (Syncd Mainnet API Node
 
 ### Minimum cluster requirements
 
-CPU: 4x2.2GHz Cores
-Memory: 64GB memory
-Network: 1 GigE
-Disk: 1TB
+* CPU: 4x2.2GHz Cores
+* Memory: 64GB memory
+* Network: 1 GigE
+* Disk: 1TB
 
 ### AWS
 https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
