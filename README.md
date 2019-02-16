@@ -19,7 +19,6 @@ sudo snap install helm --classic
 Run:
 ```bash
 helm init
-helm repo add liquidapps https://s3-us-west-2.amazonaws.com/liquidapps-helm-charts/
 helm update repo
 
 kubectl create serviceaccount --namespace kube-system tiller 
@@ -27,16 +26,17 @@ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admi
 kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 
 ```
-### Install the Zeus SDK
-
+### Run boostrap
+#### By install zeus and unboxing the release:
 https://github.com/liquidapps-io/zeus-cmd
-
-### Unbox the release
-
 ```bash
 zeus unbox dapp-cluster-k8s
 cd dapp-cluster-k8s
 ```
+#### or by using container
+docker run --entrypoint /bin/sh --rm -it -v `which aws-iam-authenticator`:/bin/aws-iam-authenticator -v $HOME/.kube/config:/root/.kube/config liquidapps/zeus-dsp-bootstrap 
+
+
 ### Edit values.yaml (optional)
 ### Deploy
 Restore from snapshot:
