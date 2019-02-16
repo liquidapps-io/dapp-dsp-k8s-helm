@@ -10,7 +10,7 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
 ## Deployment
 ### Run boostrap
 ```bash
-docker run --entrypoint /bin/sh --rm -it -v $HOME/.kube/config:/root/.kube/config liquidapps/zeus-dsp-bootstrap 
+docker run --rm -it -v $HOME/.kube/config:/root/.kube/config liquidapps/zeus-dsp-bootstrap 
 
 # inside the container shell:
 helm init
