@@ -51,3 +51,7 @@ Or resume after first restore:
 ```bash
 zeus deploy dapp-cluster dspaccount --key yourdspprivatekey --snapshot=false
 ```
+
+## Register a service package:
+
+https://github.com/liquidapps-io/zeus-dapp-network/blob/master/README-DSP.md#register
