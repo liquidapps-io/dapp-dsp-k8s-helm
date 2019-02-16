@@ -12,6 +12,7 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
 ```bash
 docker run --entrypoint /bin/sh --rm -it -v $HOME/.kube/config:/root/.kube/config liquidapps/zeus-dsp-bootstrap 
 
+# inside the container shell:
 helm init
 helm update repo
 
