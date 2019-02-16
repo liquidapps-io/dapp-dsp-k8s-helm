@@ -1,5 +1,5 @@
-# Deploying a full DSP using K8S
-
+# Deploying a full mainnet DAPP-DSP using K8S
+This helm chart will install an full mainnet DSP cluster (Syncd Mainnet API Node, DAPP DSP Services, IPFS Cluster)
 ## Getting started
 ### AWS
 https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
@@ -51,3 +51,7 @@ Or resume after first restore:
 ```bash
 zeus deploy dapp-cluster dspaccount --key yourdspprivatekey --snapshot=false
 ```
+
+## Register a service package:
+
+https://github.com/liquidapps-io/zeus-dapp-network/blob/master/README-DSP.md#register
