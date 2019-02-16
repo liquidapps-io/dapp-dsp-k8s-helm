@@ -7,35 +7,18 @@ https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
 ### GCP
 https://cloud.google.com/kubernetes-engine/docs/quickstart
 
-## Deployment using helm
-### Install helm
-
-Download client from: https://docs.helm.sh/using_helm/#installing-helm
-#### Ubuntu
+## Deployment
+### Run boostrap
 ```bash
-sudo snap install helm --classic
-```
+docker run --entrypoint /bin/sh --rm -it -v $HOME/.kube/config:/root/.kube/config liquidapps/zeus-dsp-bootstrap 
 
-Run:
-```bash
 helm init
 helm update repo
 
 kubectl create serviceaccount --namespace kube-system tiller 
 kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller 
 kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
-
 ```
-### Run boostrap
-#### By install zeus and unboxing the release:
-https://github.com/liquidapps-io/zeus-cmd
-```bash
-zeus unbox dapp-cluster-k8s
-cd dapp-cluster-k8s
-```
-#### or by using container
-docker run --entrypoint /bin/sh --rm -it -v `which aws-iam-authenticator`:/bin/aws-iam-authenticator -v $HOME/.kube/config:/root/.kube/config liquidapps/zeus-dsp-bootstrap 
-
 
 ### Edit values.yaml (optional)
 ### Deploy
@@ -52,6 +35,36 @@ Or resume after first restore:
 zeus deploy dapp-cluster dspaccount --key yourdspprivatekey --snapshot=false
 ```
 
-## Register a service package:
+### Manually installing helm and zeus (alternative method)
+#### Install helm
+Download client from: https://docs.helm.sh/using_helm/#installing-helm
+##### Ubuntu
+```bash
+sudo snap install helm --classic
+```
+Run:
+```bash
+helm init
+helm update repo
 
+kubectl create serviceaccount --namespace kube-system tiller 
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller 
+kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+
+```
+
+#### Install zeus
+
+https://github.com/liquidapps-io/zeus-cmd
+
+
+#### Unpack release box
+```bash
+zeus unbox dapp-cluster-k8s
+cd dapp-cluster-k8s
+```
+
+
+## Register a service package:
 https://github.com/liquidapps-io/zeus-dapp-network/blob/master/README-DSP.md#register
+
