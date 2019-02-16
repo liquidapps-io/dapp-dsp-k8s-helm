@@ -14,7 +14,7 @@ docker run --entrypoint /bin/sh --rm -it -v $HOME/.kube/config:/root/.kube/confi
 
 # inside the container shell:
 helm init
-helm update repo
+helm repo update
 
 kubectl create serviceaccount --namespace kube-system tiller 
 kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller 
@@ -65,6 +65,10 @@ zeus unbox dapp-cluster-k8s
 cd dapp-cluster-k8s
 ```
 
+## Monitor restore and sync progress
+```bash
+kubectl logs -f dsp-nodeos-0 --all-containers
+```
 
 ## Register a service package:
 https://github.com/liquidapps-io/zeus-dapp-network/blob/master/README-DSP.md#register
