@@ -35,6 +35,7 @@ https://github.com/liquidapps-io/zeus-cmd
 
 ```bash
 zeus unbox dapp-cluster-k8s
+cd dapp-cluster-k8s
 ```
 ### Edit values.yaml (optional)
 ### Deploy
