@@ -54,7 +54,7 @@ zeus deploy dapp-cluster dspaccount --key yourdspprivatekey --snapshot=false
 ```bash
 kubectl logs -f dsp-nodeos-0 --all-containers
 ```
-it takes a couple of hours to restore from the blockchain backups depending on internet connection and hardware performance
+*It takes a couple of hours to restore from the blockchain backups depending on internet connection and hardware performance*
 
 ## Register
 ### Prepare and host dsp.json 
