@@ -50,10 +50,6 @@ spec:
             - containerPort: 8812
               protocol: TCP
               name: webhook
-          readinessProbe:
-            httpGet:
-              path: /v1/chain/get_info
-              port: 3115
         - name: {{ .Chart.Name }}-demux
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
