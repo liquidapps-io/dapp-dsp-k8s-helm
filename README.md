@@ -141,6 +141,11 @@ zeus register dapp-service-provider-package \
     --package-json-uri https://acme-dsp.com/package1.dsp-package.json
 ```
 
+For more options:
+```bash
+zeus register dapp-service-provider-package --help 
+```
+
 ## Test your DSP
 ```bash
 [TBD]
