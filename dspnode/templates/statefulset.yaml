@@ -94,20 +94,12 @@ spec:
             - containerPort: 13115
               protocol: TCP
               name: ipfs
-          readinessProbe:
-            httpGet:
-              path: /v1/chain/get_info
-              port: 13115
         - name: {{ .Chart.Name }}-log-svc
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 13110
               protocol: TCP
-          readinessProbe:
-            httpGet:
-              path: /v1/chain/get_info
-              port: 13110
               name: log
           command:
             - node
