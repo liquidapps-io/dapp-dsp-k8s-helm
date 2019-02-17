@@ -22,7 +22,7 @@ kubectl get nodes
 ```
 ### Run boostrap container 
 ```bash
-docker run --rm -it -v $HOME/.kube/config:/root/.kube/config \
+docker run --entrypoint /bin/bash --rm -it -v $HOME/.kube/config:/root/.kube/config \
     liquidapps/zeus-dsp-bootstrap 
 ```
 
