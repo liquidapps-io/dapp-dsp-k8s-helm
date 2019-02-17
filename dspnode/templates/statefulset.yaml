@@ -11,13 +11,13 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: nodeos
+      app: dspnode
       release: {{ .Release.Name }}
   serviceName: {{ include "dspnode.headlessname" . }}
   template:
     metadata:
       labels:
-        app: nodeos
+        app: dspnode
         release: {{ .Release.Name }}
     spec:
       terminationGracePeriodSeconds: 10
@@ -39,6 +39,8 @@ spec:
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
             value: "{{ .Release.Name }}-nodeos"
+          - name: NODEOS_PORT
+            value: "38888"
           - name: DSP_ACCOUNT
             value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
@@ -61,6 +63,8 @@ spec:
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
             value: "{{ .Release.Name }}-nodeos"
+          - name: NODEOS_PORT
+            value: "38888"
           - name: NODEOS_ZMQ_PORT 
             value: "5557"
           - name: SOCKET_MODE
@@ -82,6 +86,8 @@ spec:
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
             value: "{{ .Release.Name }}-nodeos"
+          - name: NODEOS_PORT
+            value: "38888"
           - name: IPFS_HOST
             value: "{{ .Chart.Name }}-ipfs"
           - name: DSP_ACCOUNT
@@ -113,6 +119,8 @@ spec:
             value: "{{ .Values.chainid }}"
           - name: NODEOS_HOST
             value: "{{ .Release.Name }}-nodeos"
+          - name: NODEOS_PORT
+            value: "38888"
           - name: DSP_ACCOUNT
             value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY
