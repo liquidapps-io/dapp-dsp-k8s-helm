@@ -69,6 +69,13 @@ kubectl logs -f dsp-nodeos-0 --all-containers
 ```
 *It takes a couple of hours to restore from the blockchain backups depending on internet connection and hardware performance*
 
+
+### Get your API endpoint
+```
+MYAPI=$(kubectl get service dsp-dspnode -o jsonpath="{.status.loadBalancer.ingress[?(@.hostname)].hostname}"):3115
+echo $MYAPI
+```
+
 ## Register
 ### Prepare and host dsp.json 
 ```JSON
@@ -143,6 +150,7 @@ kubectl logs -f dsp-nodeos-0 --all-containers
 Warning: packages are read only and can't be removed yet.
 
 ```bash
+
 zeus register dapp-service-provider-package \
     ipfs dspaccount package1 \
     --key yourdspprivatekey \
@@ -150,11 +158,13 @@ zeus register dapp-service-provider-package \
     --package-period 3600 \
     --quota "0.1000" \
     --network mainnet \
-    --api-endpoint https://api.acme-dsp.com \
+    --api-endpoint $MYAPI \
     --package-json-uri https://acme-dsp.com/package1.dsp-package.json
 ```
 
-For staging deployment add:
+replace https://api.acme-dsp.com with the service endpoint from 
+
+*For staging deployment add:*
 ```
     --dappservices-contract=lqasdappsrvs --service-contract=lqasipfsserv
 ```
@@ -192,7 +202,7 @@ cleos set account permission mycoltoken1 dsp '{"threshold":1,"keys":[],"accounts
 
 ### Test your contract and DSP
 ```bash
-cleos -u https://api.acme-dsp.com push action mycoltoken1 coldissue '["talmuskaleos","1.0000 VTST","hello world"]}' -p mycoltoken1
+cleos -u $MYAPI push action mycoltoken1 coldissue '["talmuskaleos","1.0000 VTST","hello world"]}' -p mycoltoken1
 ```
 
 ### Check logs
