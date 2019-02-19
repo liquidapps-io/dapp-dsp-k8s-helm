@@ -38,6 +38,7 @@ eosnode:
     - --http-validate-host=false 
     - --contracts-console
     - --zmq-enable-actions
+    - --verbose-http-errors
     - --zmq-sender-bind=tcp://0.0.0.0:5556
     - --zmq-enable-pub-socket
 ipfs:
