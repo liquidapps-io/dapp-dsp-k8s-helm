@@ -165,19 +165,38 @@ zeus register dapp-service-provider-package --help
 ```
 
 ## Test your DSP
+### Upload a contract that uses vram 
+
+(https://github.com/liquidapps-io/vgrab)
+
 ```bash
-upload a contract that uses vram (e.g. coldtoken)
-cleos set abi mycoldtoken1 coldtoken.abi
-cleos set code mycoldtoken1 coldtoken.wasm
-
-// issue
-
-cleos push action lqasdappsrvs selectpkg '["mycoldtoken1","dspaccount","ipfsservice1","package1"]}' -p mycoldtoken1
-cleos push action lqasdappsrvs stake '["mycoldtoken1","dspaccount","ipfsservice1","0.1000 DAPP"]}' -p mycoldtoken1
-
-cleos -u https://api.acme-dsp.com push action mycoldtoken1 create '["mycoldtoken1","100000000.0000 VTST"]}' -p mycoldtoken1
-cleos -u https://api.acme-dsp.com push action mycoldtoken1 coldissue '["talmuskaleos","1.0000 VTST","hello world"]}' -p mycoldtoken1
+cleos set abi mycoltoken1 vgrab.abi
+cleos set code mycoltoken1 vgrab.wasm
+PKEY=mycoltoken1_active_public_key
+PERMISSIONS=`echo "{\"threshold\":1,\"keys\":[{\"key\":\"$PKEY\",\"weight\":1}],\"accounts\":[{\"permission\":{\"actor\":\"mycoltoken1\",\"permission\":\"eosio.code\"},\"weight\":1}]}"`
+cleos set account permission mycoltoken1 active $PERMISSIONS owner -p mycoltoken1
+cleos push action mycoltoken1 create '["mycoltoken1","100000000.0000 VTST"]}' -p mycoltoken1
 ```
+
+### Select your service package and stake towards you DSP
+```bash
+cleos push action lqasdappsrvs selectpkg '["mycoltoken1","dspaccount","ipfsservice1","package1"]}' -p mycoltoken1
+cleos push action lqasdappsrvs stake '["mycoltoken1","dspaccount","ipfsservice1","0.1000 DAPP"]}' -p mycoltoken1
+cleos set account permission mycoltoken1 dsp '{"threshold":1,"keys":[],"accounts":[{"permission":{"actor":"dspaccount","permission":"active"},"weight":1}]}' owner -p mycoltoken1
+```
+### Test your contract and DSP
+```bash
+cleos -u https://api.acme-dsp.com push action mycoltoken1 coldissue '["talmuskaleos","1.0000 VTST","hello world"]}' -p mycoltoken1
+```
+
+### Check logs
+```
+kubectl logs dsp-dspnode-0 -c dspnode-ipfs-svc
+```
+### look for "xcommit" and "xcleanup" actions for your contract:
+
+https://bloks.io/account/mycoltoken1
+
 
 ## Misc:
 ### Manually installing helm and zeus (boostrap container alternative)
