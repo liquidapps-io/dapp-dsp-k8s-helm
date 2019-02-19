@@ -54,6 +54,11 @@ Or resume after first restore:
 zeus deploy dapp-cluster dspaccount --key yourdspprivatekey --snapshot=false
 ```
 
+*For staging deployment add:*
+```
+--dappservices-contract-ipfs= --dappservices-contract= --dappservices-contract-log=
+```
+
 ### Monitor restore and sync progress 
 ```bash
 kubectl logs -f dsp-nodeos-0 --all-containers

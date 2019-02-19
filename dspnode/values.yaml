@@ -21,7 +21,7 @@ dspkey: a
 
 contracts:
   dappservices: dappservices
-  ipfs: ipfservice1
+  ipfs: ipfsservice1
   logs: logservices1
   
 persistence:
