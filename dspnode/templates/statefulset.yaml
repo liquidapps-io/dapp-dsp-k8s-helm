@@ -89,7 +89,7 @@ spec:
           - name: NODEOS_PORT
             value: "8888"
           - name: IPFS_HOST
-            value: "{{ .Chart.Name }}-ipfs"
+            value: "{{ .Release.Name }}-ipfs"
           - name: DSP_ACCOUNT
             value: "{{ .Values.dspaccount }}"
           - name: DSP_PRIVATE_KEY

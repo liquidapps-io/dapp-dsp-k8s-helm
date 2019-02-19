@@ -139,6 +139,9 @@ kubectl logs -f dsp-nodeos-0 --all-containers
 ```
 
 ### Register Package
+
+Warning: packages are read only and can't be removed yet.
+
 ```bash
 zeus register dapp-service-provider-package \
     ipfs dspaccount package1 \
@@ -146,8 +149,14 @@ zeus register dapp-service-provider-package \
     --min-stake-quantity "1.0000" \
     --package-period 3600 \
     --quota "0.1000" \
+    --network mainnet \
     --api-endpoint https://api.acme-dsp.com \
     --package-json-uri https://acme-dsp.com/package1.dsp-package.json
+```
+
+For staging deployment add:
+```
+    --dappservices-contract=lqasdappsrvs --service-contract=lqasipfsserv
 ```
 
 For more options:
@@ -157,7 +166,17 @@ zeus register dapp-service-provider-package --help
 
 ## Test your DSP
 ```bash
-[TBD]
+upload a contract that uses vram (e.g. coldtoken)
+cleos set abi mycoldtoken1 coldtoken.abi
+cleos set code mycoldtoken1 coldtoken.wasm
+
+// issue
+
+cleos push action lqasdappsrvs selectpkg '["mycoldtoken1","dspaccount","ipfsservice1","package1"]}' -p mycoldtoken1
+cleos push action lqasdappsrvs stake '["mycoldtoken1","dspaccount","ipfsservice1","0.1000 DAPP"]}' -p mycoldtoken1
+
+cleos -u https://api.acme-dsp.com push action mycoldtoken1 create '["mycoldtoken1","100000000.0000 VTST"]}' -p mycoldtoken1
+cleos -u https://api.acme-dsp.com push action mycoldtoken1 coldissue '["talmuskaleos","1.0000 VTST","hello world"]}' -p mycoldtoken1
 ```
 
 ## Misc:
