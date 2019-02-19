@@ -179,11 +179,17 @@ cleos push action mycoltoken1 create '["mycoltoken1","100000000.0000 VTST"]}' -p
 ```
 
 ### Select your service package and stake towards you DSP
+
 ```bash
-cleos push action lqasdappsrvs selectpkg '["mycoltoken1","dspaccount","ipfsservice1","package1"]}' -p mycoltoken1
-cleos push action lqasdappsrvs stake '["mycoltoken1","dspaccount","ipfsservice1","0.1000 DAPP"]}' -p mycoltoken1
+cleos push action dappservices selectpkg '["mycoltoken1","dspaccount","ipfsservice1","package1"]}' -p mycoltoken1
+cleos push action dappservices stake '["mycoltoken1","dspaccount","ipfsservice1","0.1000 DAPP"]}' -p mycoltoken1
 cleos set account permission mycoltoken1 dsp '{"threshold":1,"keys":[],"accounts":[{"permission":{"actor":"dspaccount","permission":"active"},"weight":1}]}' owner -p mycoltoken1
 ```
+
+*For staging deployment, replace:*
+- ipfsservice1 with lqasipfsserv
+- dappservices with lqasdappsrvs
+
 ### Test your contract and DSP
 ```bash
 cleos -u https://api.acme-dsp.com push action mycoltoken1 coldissue '["talmuskaleos","1.0000 VTST","hello world"]}' -p mycoltoken1
