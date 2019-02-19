@@ -16,6 +16,7 @@ spec:
   ports:
     - port: {{ .Values.service.port }}
       targetPort: 3115
+      nodepot: 30115
       protocol: TCP
       name: api
   selector:
