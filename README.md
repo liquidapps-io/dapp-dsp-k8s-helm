@@ -60,7 +60,7 @@ zeus deploy dapp-cluster dspaccount --key yourdspprivatekey --snapshot=false
 
 *For staging deployment add:*
 ```
---dappservices-contract-ipfs= --dappservices-contract= --dappservices-contract-log=
+--dappservices-contract-ipfs=lqasipfsserv --dappservices-contract=lqasdappsrvs --dappservices-contract-log=lqaslogserv1
 ```
 
 ### Monitor restore and sync progress 
