@@ -14,11 +14,11 @@ spec:
     - {{ $cidr }}
 {{- end }}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: 3115
       targetPort: 3115
       nodePort: 30115
       protocol: TCP
       name: api
   selector:
-    app: nodeos
+    app: dspnode
     release: {{ .Release.Name }}
