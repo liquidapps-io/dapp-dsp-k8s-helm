@@ -25,6 +25,14 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
 kubectl get nodes
 ```
 ### Run boostrap container 
+For GCP:
+```bash
+docker run -v /google/google-cloud-sdk:/google/google-cloud-sdk \
+    --entrypoint /bin/bash --rm -it -v $HOME/.kube/config:/root/.kube/config \
+    liquidapps/zeus-dsp-bootstrap 
+```
+
+Others:
 ```bash
 docker run --entrypoint /bin/bash --rm -it -v $HOME/.kube/config:/root/.kube/config \
     liquidapps/zeus-dsp-bootstrap 
