@@ -41,14 +41,8 @@ docker run --entrypoint /bin/bash --rm -it -v $HOME/.kube/config:/root/.kube/con
 Inside the container shell:
 ```bash
 # install helm on cluster
-helm init
+helm init --service-account tiller
 helm repo update
-# patch helm
-kubectl create serviceaccount --namespace kube-system tiller 
-kubectl create clusterrolebinding tiller-cluster-rule \
-    --clusterrole=cluster-admin --serviceaccount=kube-system:tiller 
-kubectl patch deploy --namespace kube-system tiller-deploy \
-    -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 ```
 
 ### Edit values.yaml (optional)
