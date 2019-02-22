@@ -72,11 +72,21 @@ kubectl logs -f dsp-nodeos-0 --all-containers
 *It takes a couple of hours to restore from the blockchain backups depending on internet connection and hardware performance*
 
 
-### Get your API endpoint
-```
+### Get your API endpoint 
+AWS:
+```bash
 MYAPI=$(kubectl get service dsp-dspnode -o jsonpath="{.status.loadBalancer.ingress[?(@.hostname)].hostname}"):3115
 echo $MYAPI
 ```
+
+GCP:
+```bash
+MYAPI=$(kubectl get service dsp-dspnode -o jsonpath="{.status.loadBalancer.ingress[0].ip}"):3115
+echo $MYAPI
+```
+
+
+
 
 ## Register
 ### Prepare and host dsp.json 
