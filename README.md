@@ -204,7 +204,7 @@ cleos push action mycoldtoken1 create '["mycoltoken1","100000000.0000 VTST"]}' -
 
 ```bash
 cleos push action dappservices selectpkg '["mycoltoken1","dspaccount","ipfsservice1","package1"]}' -p mycoltoken1
-cleos push action dappservices stake '["mycoltoken1","dspaccount","ipfsservice1","0.1000 DAPP"]}' -p mycoltoken1
+cleos push action dappservices stake '["mycoltoken1","dspaccount","ipfsservice1","1.0000 DAPP"]}' -p mycoltoken1
 cleos set account permission mycoldtoken1 dsp '{"threshold":1,"keys":[],"accounts":[{"permission":{"actor":"dspaccount","permission":"active"},"weight":1}]}' owner -p mycoltoken1
 ```
 
