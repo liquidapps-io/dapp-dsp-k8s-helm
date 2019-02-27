@@ -164,7 +164,7 @@ echo $MYAPI
 
 ### Register Package
 
-Warning: packages are read only and can't be removed yet.
+**Warning: packages are read only and can't be removed yet.**
 
 ```bash
 
