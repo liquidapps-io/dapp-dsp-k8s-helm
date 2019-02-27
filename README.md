@@ -40,6 +40,11 @@ docker run --entrypoint /bin/bash --rm -it -v $HOME/.kube/config:/root/.kube/con
 
 Inside the container shell:
 ```bash
+
+# create tiller service account
+kubectl -n kube-system create serviceaccount tiller
+kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+
 # install helm on cluster
 helm init --service-account tiller
 helm repo update
