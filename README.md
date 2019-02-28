@@ -230,7 +230,7 @@ kubectl logs dsp-dspnode-0 -c dspnode-ipfs-svc
 
 https://bloks.io/account/mycoltoken1
 
-### Claiming you daily rewards:
+### Claim your DAPP daily rewards:
 ```bash
 cleos push action dappservices claimrewards '["dspaccount"]' -p dspaccount
 ```
