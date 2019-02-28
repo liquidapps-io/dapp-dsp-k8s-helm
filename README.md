@@ -219,7 +219,7 @@ cleos set account permission mycoldtoken1 dsp '{"threshold":1,"keys":[],"account
 
 ### Test your contract and DSP
 ```bash
-cleos -u $MYAPI push action mycoldtoken1 coldissue '["talmuskaleos","1.0000 VTST","hello world"]}' -p mycoltoken1
+cleos -u $MYAPI push action mycoldtoken1 coldissue '["talmuskaleos","1.0000 VTST","hello world"]' -p mycoltoken1
 ```
 
 ### Check logs
@@ -230,6 +230,10 @@ kubectl logs dsp-dspnode-0 -c dspnode-ipfs-svc
 
 https://bloks.io/account/mycoltoken1
 
+### Claiming you daily rewards:
+```bash
+cleos push action dappservices claimrewards '["dspaccount"]' -p dspaccount
+```
 
 ## Misc:
 ### Manually installing helm and zeus (boostrap container alternative)
