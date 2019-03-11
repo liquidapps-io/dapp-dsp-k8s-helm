@@ -182,7 +182,7 @@ zeus register dapp-service-provider-package --help
 ```
 
 #### Modify Package metadata:
-Currently: only package-json-uri & api-endpoint are modifyable.
+Currently only package-json-uri & api-endpoint are modifyable.
 To modify package metadata: use the "modifypkg" action of the dappservices contract. (https://bloks.io/account/dappservices)
 
 ## Test your DSP
