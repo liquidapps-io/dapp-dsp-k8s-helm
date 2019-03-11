@@ -60,11 +60,6 @@ Or resume after first restore:
 zeus deploy dapp-cluster dspaccount --key yourdspprivatekey --snapshot=false
 ```
 
-*For staging deployment add:*
-```
---dappservices-contract-ipfs=lqasipfsserv --dappservices-contract=lqasdappsrvs --dappservices-contract-log=lqaslogserv1
-```
-
 ### Monitor restore and sync progress 
 ```bash
 kubectl logs -f dsp-nodeos-0 --all-containers
@@ -140,7 +135,7 @@ echo $MYAPI
         },
         "performance":{
             "95": 500,
-        },
+        }
     },
     "pinning":{
         "ttl": 2400,
@@ -166,9 +161,9 @@ Warning: packages are read only and can't be removed yet.
 zeus register dapp-service-provider-package \
     ipfs dspaccount package1 \
     --key yourdspprivatekey \
-    --min-stake-quantity "1.0000" \
-    --package-period 3600 \
-    --quota "0.1000" \
+    --min-stake-quantity "10.0000" \
+    --package-period 86400 \
+    --quota "1.0000" \
     --network mainnet \
     --api-endpoint $MYAPI \
     --package-json-uri https://acme-dsp.com/package1.dsp-package.json
@@ -176,15 +171,14 @@ zeus register dapp-service-provider-package \
 
 replace https://api.acme-dsp.com with the service endpoint from 
 
-*For staging deployment add:*
-```
-    --dappservices-contract=lqasdappsrvs --service-contract=lqasipfsserv
-```
-
 For more options:
 ```bash
 zeus register dapp-service-provider-package --help 
 ```
+
+#### Modify Package metadata:
+Currently: only package-json-uri & api-endpoint are modifyable.
+To modify package metadata: use the "modifypkg" action of the dappservices contract. (https://bloks.io/account/dappservices)
 
 ## Test your DSP
 ### Upload a contract that uses vram 
@@ -207,10 +201,6 @@ cleos push action dappservices selectpkg '["mycoltoken1","dspaccount","ipfsservi
 cleos push action dappservices stake '["mycoltoken1","dspaccount","ipfsservice1","0.1000 DAPP"]}' -p mycoltoken1
 cleos set account permission mycoldtoken1 dsp '{"threshold":1,"keys":[],"accounts":[{"permission":{"actor":"dspaccount","permission":"active"},"weight":1}]}' owner -p mycoltoken1
 ```
-
-*For staging deployment, replace:*
-- ipfsservice1 with lqasipfsserv
-- dappservices with lqasdappsrvs
 
 ### Test your contract and DSP
 ```bash
