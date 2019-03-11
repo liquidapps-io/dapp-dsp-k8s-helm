@@ -40,6 +40,11 @@ docker run --entrypoint /bin/bash --rm -it -v $HOME/.kube/config:/root/.kube/con
 
 Inside the container shell:
 ```bash
+
+# create tiller service account
+kubectl -n kube-system create serviceaccount tiller
+kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+
 # install helm on cluster
 helm init --service-account tiller
 helm repo update
@@ -154,7 +159,7 @@ echo $MYAPI
 
 ### Register Package
 
-Warning: packages are read only and can't be removed yet.
+**Warning: packages are read only and can't be removed yet.**
 
 ```bash
 
@@ -198,13 +203,13 @@ cleos push action mycoldtoken1 create '["mycoltoken1","100000000.0000 VTST"]}' -
 
 ```bash
 cleos push action dappservices selectpkg '["mycoltoken1","dspaccount","ipfsservice1","package1"]}' -p mycoltoken1
-cleos push action dappservices stake '["mycoltoken1","dspaccount","ipfsservice1","0.1000 DAPP"]}' -p mycoltoken1
+cleos push action dappservices stake '["mycoltoken1","dspaccount","ipfsservice1","1.0000 DAPP"]}' -p mycoltoken1
 cleos set account permission mycoldtoken1 dsp '{"threshold":1,"keys":[],"accounts":[{"permission":{"actor":"dspaccount","permission":"active"},"weight":1}]}' owner -p mycoltoken1
 ```
 
 ### Test your contract and DSP
 ```bash
-cleos -u $MYAPI push action mycoldtoken1 coldissue '["talmuskaleos","1.0000 VTST","hello world"]}' -p mycoltoken1
+cleos -u $MYAPI push action mycoldtoken1 coldissue '["talmuskaleos","1.0000 VTST","hello world"]' -p mycoltoken1
 ```
 
 ### Check logs
@@ -215,6 +220,10 @@ kubectl logs dsp-dspnode-0 -c dspnode-ipfs-svc
 
 https://bloks.io/account/mycoltoken1
 
+### Claim your DAPP daily rewards:
+```bash
+cleos push action dappservices claimrewards '["dspaccount"]' -p dspaccount
+```
 
 ## Misc:
 ### Manually installing helm and zeus (boostrap container alternative)
