@@ -7,7 +7,7 @@ replicaCount: 1
 
 image:
   repository: liquidapps/eosio-dsp
-  tag: v1.2
+  tag: v1.2-latest
   pullPolicy: Always
 
 service:
