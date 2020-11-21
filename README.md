@@ -41,7 +41,7 @@ docker run --entrypoint /bin/bash --rm -it -v $HOME/.kube/config:/root/.kube/con
 Inside the container shell:
 ```bash
 
-# create tiller service account
+# create tiller service massto
 kubectl -n kube-system create serviceaccount tiller
 kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
 
